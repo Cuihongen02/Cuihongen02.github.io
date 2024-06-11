@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Spark HA &amp; Yarn 配置 | cuihongen02&#39;s new blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="配置Spark HA123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960停止spark 集群$SPARK_HOME&#x2F;sbin&#x2F;stop-all.sh修改改配置修改spark-env.sh文件&#x2F;&#x2F;进入 spark 配置文件目录cd">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spark HA &amp; Yarn 配置">
+<meta property="og:url" content="https://cuihongen02.github.io/2024/06/11/%E3%80%8ASpark-HA-Yarn-%E9%85%8D%E7%BD%AE%E3%80%8B/index.html">
+<meta property="og:site_name" content="cuihongen02&#39;s new blog">
+<meta property="og:description" content="配置Spark HA123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960停止spark 集群$SPARK_HOME&#x2F;sbin&#x2F;stop-all.sh修改改配置修改spark-env.sh文件&#x2F;&#x2F;进入 spark 配置文件目录cd">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-11T10:55:32.969Z">
+<meta property="article:modified_time" content="2024-06-11T10:24:24.511Z">
+<meta property="article:author" content="cuihongen02">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="cuihongen02's new blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cuihongen02&#39;s new blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Welcome to my blog!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cuihongen02.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-《Spark-HA-Yarn-配置》" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/11/%E3%80%8ASpark-HA-Yarn-%E9%85%8D%E7%BD%AE%E3%80%8B/" class="article-date">
+  <time class="dt-published" datetime="2024-06-11T10:55:32.969Z" itemprop="datePublished">2024-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Spark HA &amp; Yarn 配置
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="配置Spark-HA"><a href="#配置Spark-HA" class="headerlink" title="配置Spark HA"></a>配置Spark HA</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">停止spark 集群</span><br><span class="line"><span class="variable">$SPARK_HOME</span>/sbin/stop-all.sh</span><br><span class="line"></span><br><span class="line">修改改配置</span><br><span class="line">修改spark-env.sh文件</span><br><span class="line">//进入 spark 配置文件目录</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$SPARK_HOME</span>/conf</span><br><span class="line">//打开 spark-env.sh文件</span><br><span class="line">vim spark-env.sh</span><br><span class="line">//注释掉 Master配置</span><br><span class="line"><span class="comment"># export SPARK_MASTER_HOST=hadoop01</span></span><br><span class="line">//添加SPARK_DAEMON_JAVA_OPTS,内容如下:</span><br><span class="line"><span class="built_in">export</span> SPARK_DAEMON_JAVA_OPTS=<span class="string">&quot;-Dspark.deploy.recoveryMode=ZOOKEEPER  -Dspark.deploy.zookeeper.url=hadoop01:2181,hadoop02:2181,hadoop03:2181  -Dspark.deploy.zookeeper.dir=/spark&quot;</span></span><br><span class="line">//保存退出</span><br><span class="line">:wq</span><br><span class="line">参数说明</span><br><span class="line">spark.deploy.recoveryMode：恢复模式</span><br><span class="line">spark.deploy.zookeeper.url：ZooKeeper的Server地址</span><br><span class="line">spark.deploy.zookeeper.dir：保存集群元数据信息的文件、目录。包括Worker、Driver、Application信息。</span><br><span class="line"></span><br><span class="line">分到其它节点</span><br><span class="line">scp spark-env.sh hadoop02:<span class="variable">$PWD</span></span><br><span class="line"></span><br><span class="line">测试</span><br><span class="line">1. 启动zk集群</span><br><span class="line">zkstart-all.sh</span><br><span class="line">没有的话可以使用 zkServer.sh start 命令启动</span><br><span class="line">没有脚本可以配置参考链接:</span><br><span class="line">https://blog.csdn.net/hongchenshijie/category_9453806.html</span><br><span class="line">2. 启动spark 集群</span><br><span class="line">// 启动spark (节点一运行)</span><br><span class="line"><span class="variable">$SPARK_HOME</span>/sbin/start-all.sh</span><br><span class="line">//在节点二单独只启动个master</span><br><span class="line"><span class="variable">$SPARK_HOME</span>/sbin/start-master.sh</span><br><span class="line">3.注意</span><br><span class="line">在普通模式下启动spark集群</span><br><span class="line">只需要在主节点上执行start-all.sh 就可以了</span><br><span class="line"></span><br><span class="line">在高可用模式下启动spark集群</span><br><span class="line">先需要在任意一台主节点上执行start-all.sh</span><br><span class="line">然后在另外一台主节点上单独执行start-master.sh</span><br><span class="line"></span><br><span class="line">4.查看hadoop01和hadoop02</span><br><span class="line">进入web,界面查看状态可以观察到有一台状态为StandBy</span><br><span class="line"></span><br><span class="line">http://hadoop01:8080/</span><br><span class="line">http://hadoop02:8080/</span><br><span class="line">5.先使用jps查看 master 进程 <span class="built_in">id</span></span><br><span class="line">6. 使用<span class="built_in">kill</span> -9 杀死master进程</span><br><span class="line"><span class="built_in">kill</span> -9 4781</span><br><span class="line">7. 然后重新启动节点一的master</span><br><span class="line"><span class="variable">$SPARK_HOME</span>/sbin/start-master.sh</span><br><span class="line">8. 刷新后再次查看web界面</span><br><span class="line">可以看到节点一的状态编程 standBy 了,节点二的状态变成了alive,这就说明配置成功了</span><br><span class="line">9. 测试向集群提交任务</span><br><span class="line">10.参看结果</span><br><span class="line">hadoop fs -<span class="built_in">ls</span> /aaa/exercise01/output2/</span><br><span class="line">hadoop fs -<span class="built_in">cat</span> /aaa/exercise01/output/part-00000</span><br><span class="line">hadoop fs -<span class="built_in">cat</span> /aaa/exercise01/output/part-00001</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="on-yarn模式"><a href="#on-yarn模式" class="headerlink" title="on yarn模式"></a>on yarn模式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">1.安装启动Hadoop(需要使用HDFS和YARN，已经ok)</span><br><span class="line">2.安装单机版Spark(已经ok)</span><br><span class="line">注意：不需要集群，因为把Spark程序提交给YARN运行本质上是把字节码给YARN集群上的JVM运行，但是得有一个东西帮我去把任务提交上个YARN，所以需要一个单机版的Spark，里面的有spark-shell命令，spark-submit命令</span><br><span class="line"></span><br><span class="line">3.修改配置</span><br><span class="line">在spark-env.sh ，添加HADOOP_CONF_DIR配置，指明了hadoop的配置文件的位置</span><br><span class="line"></span><br><span class="line">//打开配置文件</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$SPARK_HOME</span>/conf</span><br><span class="line">vim spark-env.sh</span><br><span class="line">//添加如下配置</span><br><span class="line"><span class="built_in">export</span> HADOOP_CONF_DIR=<span class="variable">$&#123;HADOOP_HOME&#125;</span>/etc/hadoop</span><br><span class="line">//分发到其它节点(可以不分发)</span><br><span class="line">scp spark-env.sh hadoop02:<span class="variable">$PWD</span></span><br><span class="line">scp spark-env.sh hadoop03:<span class="variable">$PWD</span></span><br><span class="line">4. 提交任务到yarn</span><br><span class="line">先进入 http://hadoop01:8088 yarn页面</span><br><span class="line">提交一下命令</span><br><span class="line"></span><br><span class="line"><span class="variable">$SPARK_HOME</span>/bin/spark-submit \</span><br><span class="line">--class org.apache.spark.examples.SparkPi \</span><br><span class="line">--master yarn \</span><br><span class="line">--deploy-mode client \</span><br><span class="line">--driver-memory 1g \</span><br><span class="line">--executor-memory 1g \</span><br><span class="line">--executor-cores 2 \</span><br><span class="line">--queue default \</span><br><span class="line"><span class="variable">$SPARK_HOME</span>/examples/jars/spark-examples_2.11-2.2.0.jar \</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cuihongen02.github.io/2024/06/11/%E3%80%8ASpark-HA-Yarn-%E9%85%8D%E7%BD%AE%E3%80%8B/" data-id="clxaadbqk000190ud00ln697y" data-title="Spark HA &amp; Yarn 配置" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2024/06/11/%E3%80%8ASpark-local-stand-alone%E9%85%8D%E7%BD%AE%E3%80%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">《Spark local&amp; stand-alone 配置》</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/11/%E3%80%8ASpark-HA-Yarn-%E9%85%8D%E7%BD%AE%E3%80%8B/">Spark HA &amp; Yarn 配置</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/11/%E3%80%8ASpark-local-stand-alone%E9%85%8D%E7%BD%AE%E3%80%8B/">《Spark local&amp; stand-alone 配置》</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/11/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">《Spark基础环境配置》</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/11/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 cuihongen02<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

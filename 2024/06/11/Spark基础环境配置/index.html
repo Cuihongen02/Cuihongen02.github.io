@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>《Spark基础环境配置》 | cuihongen02&#39;s new blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="基础环境1234567891011121314151617181920212223242526272829303132333435363738391、主机名2、配置hosts    pwd    cd &#x2F;etc    ls -al hosts    more hosts    ping 192.168.88.131 -c 1    ping 192.168.88.132 -c 1    ping">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Spark基础环境配置》">
+<meta property="og:url" content="https://cuihongen02.github.io/2024/06/11/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="cuihongen02&#39;s new blog">
+<meta property="og:description" content="基础环境1234567891011121314151617181920212223242526272829303132333435363738391、主机名2、配置hosts    pwd    cd &#x2F;etc    ls -al hosts    more hosts    ping 192.168.88.131 -c 1    ping 192.168.88.132 -c 1    ping">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-11T10:21:48.771Z">
+<meta property="article:modified_time" content="2024-06-11T10:24:18.483Z">
+<meta property="article:author" content="cuihongen02">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="cuihongen02's new blog" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cuihongen02&#39;s new blog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">Welcome to my blog!</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cuihongen02.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Spark基础环境配置" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2024/06/11/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time class="dt-published" datetime="2024-06-11T10:21:48.771Z" itemprop="datePublished">2024-06-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      《Spark基础环境配置》
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="基础环境"><a href="#基础环境" class="headerlink" title="基础环境"></a>基础环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">1、主机名</span><br><span class="line">2、配置hosts</span><br><span class="line">    <span class="built_in">pwd</span></span><br><span class="line">    <span class="built_in">cd</span> /etc</span><br><span class="line">    <span class="built_in">ls</span> -al hosts</span><br><span class="line">    more hosts</span><br><span class="line">    ping 192.168.88.131 -c 1</span><br><span class="line">    ping 192.168.88.132 -c 1</span><br><span class="line">    ping slave1 -c 1</span><br><span class="line">3.安装NTP</span><br><span class="line">   yum -y install ntp</span><br><span class="line">   systemctl <span class="built_in">enable</span> ntpd &amp;&amp; systemctl start ntpd</span><br><span class="line">4、配置SSH免密码</span><br><span class="line">(1)所有节点分别生成私有密钥</span><br><span class="line">   ssh-keygen -t dsa -P <span class="string">&#x27;&#x27;</span> -f /root/.ssh/id_dsa</span><br><span class="line">   <span class="built_in">cd</span> .ssh/</span><br><span class="line">   <span class="built_in">ls</span> -al</span><br><span class="line">(2)将公钥文件复制为authorized_key文件</span><br><span class="line">   more id_dsa.pub &gt;&gt; authorized_keys</span><br><span class="line">   <span class="built_in">ls</span></span><br><span class="line">   more authorized_keys</span><br><span class="line">(3)mater主机连接自己,做SSH内环测试</span><br><span class="line">   ssh master</span><br><span class="line">(4)slave1 slave2 节点将 master 公钥文件复制本机 </span><br><span class="line">   scp root@master:/root/.ssh/id_dsa.pub /root/</span><br><span class="line">   <span class="built_in">ls</span></span><br><span class="line">(5)将 master 节点公钥文件追加各个节点authorized_keys文件</span><br><span class="line">   more id_dsa.pub &gt;&gt; /root/.ssh/authorized_keys</span><br><span class="line">   <span class="built_in">cd</span> .ssh/</span><br><span class="line">   <span class="built_in">ls</span></span><br><span class="line">   more authorized_keys</span><br><span class="line">   ssh master</span><br><span class="line">   ssh root@slave1</span><br><span class="line">   <span class="built_in">exit</span></span><br><span class="line">   ssh root@slave2</span><br><span class="line">   <span class="built_in">exit</span></span><br><span class="line">   ssh root@slave1</span><br><span class="line">   <span class="built_in">exit</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="安装-配置JDK"><a href="#安装-配置JDK" class="headerlink" title="安装 配置JDK"></a>安装 配置JDK</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">mkdir</span> -pv /usr/java</span><br><span class="line">   tar -zxvf jdk-8u171-linux-x64.tar.gz -C /usr/java/</span><br><span class="line">   <span class="built_in">cd</span> /usr/java/</span><br><span class="line">   <span class="built_in">ls</span></span><br><span class="line">   <span class="built_in">cd</span> jdk1.8.0_171/</span><br><span class="line">   <span class="built_in">pwd</span></span><br><span class="line">   <span class="built_in">tail</span> -f 10 profile</span><br><span class="line">   <span class="built_in">source</span>  /etc/profile</span><br><span class="line">   java  -version</span><br><span class="line">   scp -r root@master:/usr/java   /usr/</span><br><span class="line">   vi /etc/profile</span><br><span class="line">   <span class="built_in">source</span>  /etc/profile</span><br><span class="line">   java  -version</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
+<p>###zookeeper</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">1、修改主机名 与 IP地址映射设置（master、slave1、2都修改）</span><br><span class="line">   vi /etc/hosts</span><br><span class="line">   more /etc/hosts</span><br><span class="line">2.master节点执行操作</span><br><span class="line">(1)创建zookeeper目录、解压解包；复制zoo.cfg：</span><br><span class="line">   <span class="built_in">mkdir</span> -pv /usr/zookeeper</span><br><span class="line">   tar -zxvf zookeeper-3.4.10.tar.gz -C /usr/zookeeper/</span><br><span class="line">   <span class="built_in">cd</span> /usr/zookeeper/zookeeper-3.4.10/</span><br><span class="line">   <span class="built_in">cp</span> zoo_sample.cfg zoo.cfg</span><br><span class="line">   <span class="built_in">ls</span></span><br><span class="line">（2）配置zoo.cfg</span><br><span class="line">   more zoo.cfg</span><br><span class="line">(3)在zookeeper目录中，创建zkdata、zkdatalog两个目录</span><br><span class="line">   <span class="built_in">cd</span> /usr/zookeeper/zookeeper-3.4.10/</span><br><span class="line">   <span class="built_in">ls</span></span><br><span class="line">   <span class="built_in">mkdir</span> -pv zkdata</span><br><span class="line">   <span class="built_in">mkdir</span> -pv zkdatalog</span><br><span class="line">（4）进入zkdata目录，创建文件myid</span><br><span class="line">   <span class="built_in">cd</span> /usr/zookeeper</span><br><span class="line">   <span class="built_in">cd</span> zookeeper-3.4.10/</span><br><span class="line">   <span class="built_in">cd</span> zkdata</span><br><span class="line">   <span class="built_in">echo</span> <span class="string">&quot;1&quot;</span> &gt; myid</span><br><span class="line">   more myid</span><br><span class="line">（5）将zookeeper目录分别slave1、slave2</span><br><span class="line">   scp  -r /usr/zookeeper/  root@slave1:/usr</span><br><span class="line">   scp  -r /usr/zookeeper/  root@slave2:/usr</span><br><span class="line">（6）设置 myid</span><br><span class="line">   <span class="built_in">cd</span> /usr/zookeeper/zookeeper-3.4.10/zkdata</span><br><span class="line">（7）配置环境变量，并启动zookeeper（注：master、slave1、slave2）</span><br><span class="line">   vi /etc/profile</span><br><span class="line">启动zookeeper集群</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="安装Hadoop"><a href="#安装Hadoop" class="headerlink" title="安装Hadoop"></a>安装Hadoop</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">1.创建/usr/hadoop目录、解压解包Hadoop</span><br><span class="line">将hadoop-2.7.3.tar.gz 解压解包放置/usr/hadoop目录</span><br><span class="line">   tar -zxvf hadoop-2.7.3.tar.gz -C /usr/hadoop/</span><br><span class="line">配置hadoop环境变量：（注：master、slave1、slave2均操作）</span><br><span class="line">   vi  /etc/profile </span><br><span class="line">   <span class="built_in">export</span> HADOOP_HOME=/usr/hadoop/hadoop-2.7.3/</span><br><span class="line">   <span class="built_in">export</span> CLASSPATH=<span class="variable">$CLASSPATH</span>:<span class="variable">$HADOOP_HOME</span>/lib</span><br><span class="line">   <span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HADOOP_HOME</span>/bin</span><br><span class="line">   <span class="built_in">source</span>  /etc/profile </span><br><span class="line">编辑hadoop环境配置文件hadoop-env.sh</span><br><span class="line">路径：/usr/hadoop/hadoop-2.7.3/etc/Hadoop</span><br><span class="line">编辑core-site.xml</span><br><span class="line">编辑yarn-site.xml</span><br><span class="line">编写slave文件与 master文件</span><br><span class="line">配置hdfs-site.xml</span><br><span class="line">编辑mapred-site.xml</span><br><span class="line">向slave1、slave2分发Hadoop目录</span><br><span class="line">master节点中格式化hadoop</span><br><span class="line">执行 hdfs  namenode  -format</span><br><span class="line">在slave1、slave2节点查看：jps</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://cuihongen02.github.io/2024/06/11/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="clxaadbqf000090udbl2k875p" data-title="《Spark基础环境配置》" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2024/06/11/%E3%80%8ASpark-local-stand-alone%E9%85%8D%E7%BD%AE%E3%80%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          《Spark local&amp; stand-alone 配置》
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2024/06/11/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2024/06/11/%E3%80%8ASpark-HA-Yarn-%E9%85%8D%E7%BD%AE%E3%80%8B/">Spark HA &amp; Yarn 配置</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/11/%E3%80%8ASpark-local-stand-alone%E9%85%8D%E7%BD%AE%E3%80%8B/">《Spark local&amp; stand-alone 配置》</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/11/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">《Spark基础环境配置》</a>
+          </li>
+        
+          <li>
+            <a href="/2024/06/11/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 cuihongen02<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
