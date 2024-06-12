@@ -3,36 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  
   <title>《Spark基础环境配置》 | cuihongen02&#39;s new blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="基础环境1234567891011121314151617181920212223242526272829303132333435363738391、主机名2、配置hosts    pwd    cd &#x2F;etc    ls -al hosts    more hosts    ping 192.168.88.131 -c 1    ping 192.168.88.132 -c 1    ping">
-<meta property="og:type" content="article">
-<meta property="og:title" content="《Spark基础环境配置》">
-<meta property="og:url" content="https://cuihongen02.github.io/2024/06/11/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/index.html">
-<meta property="og:site_name" content="cuihongen02&#39;s new blog">
-<meta property="og:description" content="基础环境1234567891011121314151617181920212223242526272829303132333435363738391、主机名2、配置hosts    pwd    cd &#x2F;etc    ls -al hosts    more hosts    ping 192.168.88.131 -c 1    ping 192.168.88.132 -c 1    ping">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-06-11T10:21:48.771Z">
-<meta property="article:modified_time" content="2024-06-11T10:24:18.483Z">
-<meta property="article:author" content="cuihongen02">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="cuihongen02's new blog" type="application/atom+xml">
-  
   
     <link rel="shortcut icon" href="/favicon.png">
   
   
-  
 <link rel="stylesheet" href="/css/style.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-  
 <meta name="generator" content="Hexo 7.2.0"></head>
 
 <body>
@@ -53,23 +31,19 @@
     </div>
     <div id="header-inner" class="inner">
       <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        <a id="main-nav-toggle" class="nav-icon"></a>
         
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="/categories">Categories</a>
+        
+          <a class="main-nav-link" href="/tags">Tags</a>
+        
+          <a class="main-nav-link" href="/about">About</a>
+        
       </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://cuihongen02.github.io"></form>
-      </div>
     </div>
   </div>
 </header>
@@ -114,7 +88,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://cuihongen02.github.io/2024/06/11/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="clxaadbqf000090udbl2k875p" data-title="《Spark基础环境配置》" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://cuihongen02.github.io/2024/06/11/Spark%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" data-id="clxb69fwr0000usud5pcv48dt" data-title="《Spark基础环境配置》" class="article-share-link">Share</a>
       
       
       
@@ -146,25 +120,9 @@
 
 
 </section>
-        
-          <aside id="sidebar">
+        <aside id="sidebar">
   
     
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li></ul>
-    </div>
-  </div>
-
 
   
     
@@ -194,20 +152,29 @@
   </div>
 
   
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/06/">June 2024</a></li></ul>
+    </div>
+  </div>
+
+  
 </aside>
-        
       </div>
       <footer id="footer">
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      
-      &copy; 2024 cuihongen02<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+      &copy; 2024 By Autoload<br>
+      Driven - <a href="https://hexo.io/" target="_blank">Hexo</a>|Theme - <a href="https://github.com/autoload/hexo-theme-auto" target="_blank">Auto</a>
     </div>
   </div>
 </footer>
-
     </div>
     <nav id="mobile-nav">
   
@@ -215,22 +182,20 @@
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
 </nav>
     
 
 
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
+<script src="/js/jquery-3.4.1.min.js"></script>
 
 
 <script src="/js/script.js"></script>
-
 
 
 
